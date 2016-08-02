@@ -1,0 +1,130 @@
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+    font-style: italic;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    color: #FFD740;
+    text-shadow: 0 3px 8px rgba(0,0,0,0.56);
+    text-transform: uppercase;
+}
+header {
+    background-color: #E91E63;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.26);
+    margin: 0;
+}
+body {
+    background-image: url('lasunset.jpg');
+    background-size: cover;
+}
+* {
+    font-family: Noto Sans;
+}
+.outerTextDiv {
+    background-color: #F48FB1;
+    border-radius: 5px;
+    box-shadow: 0 5px 12px rgba(0,0,0,0.36);
+}
+.outerTextDivLarge {
+    height: 300px;
+    margin: 20px;
+}
+.outerTextDivSmall {
+    height: 120px;
+    margin: 2% 25%;
+}
+.optionDiv{
+    position: relative;
+    left: 15%;
+    background-color: #F8BBD0;
+    height: 400px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 7px 12px rgba(0,0,0,0.56);
+}
+.outerTextDiv:hover {
+    background-color: #F06292;
+
+}
+.optionDiv:hover {
+    background-color: #F48FB1;
+}
+.innerTextDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 85%;
+    background-color: whitesmoke;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+}
+.innerTextDiv h2 {
+    color: rgba(0, 0, 0, .83);
+    text-align: center;
+}
+.nameInput {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: whitesmoke;
+    border-bottom: 1px solid #E91E63;
+}
+.optionImgDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 90%;
+    background-color:#FFD740;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .36);
+}
+.optionImgDiv img {
+    height: 95%;
+    width: 95%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.avatarDiv {
+    position: relative;
+    height: 60%;
+    background-color: #FFD740;
+    margin: 0 5.5%;
+    border-radius: 3px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .36);
+}
+.avatarDiv img {
+    height: 90%;
+    border-radius: 3px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+button {
+    color: #FFD740;
+    background-color: #E91E63;
+    text-transform: uppercase;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .45);
+    border: none;
+    padding: 1%;
+    font-size: 1.5em;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
