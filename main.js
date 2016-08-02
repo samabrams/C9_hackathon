@@ -1,8 +1,5 @@
 var songArray = [];
-var iWant = {
-    feel: 'dinner time'
-};
-var backgroundSong = $('#audio');
+var typeOfSong= "aint too proud";
 
 function playPause() {
     var audio = document.getElementById("audio");
@@ -24,7 +21,7 @@ function listenAjax() {
     $.ajax({
         url: 'https://api.spotify.com/v1/search',
         data: {
-            q: iWant.feel,
+            q: typeOfSong,
             type: 'track'
         },
 
@@ -42,14 +39,13 @@ function listenAjax() {
                 console.log(songArray[0]);
             }
             $('#audio').attr('src', songArray[0].audio);
-
+            playPause();
         }
 
     });
 }
 
 $(document).ready(function(){
-    $('#ajax_button').click(listenAjax);
-    $('#playButton').click(playPause)
-
+    listenAjax();
+    $('#playButton').click(playPause);
 });
