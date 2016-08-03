@@ -2,14 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Google API Ajax Call</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJNuVmM9d3LzG36sdU2hJAEJPuYWH5DY0&libraries=places"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <title>Explore LA</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJNuVmM9d3LzG36sdU2hJAEJPuYWH5DY0&libraries=places"></script>
+    <script src="main.js"></script>
 </head>
 <body>
+<header class="col-xs-12">
+    <h1>Explore LA</h1>
+</header>
 <div id="map"></div>
-</div>
+<div class="col-xs-offset-1 col-xs-10  mainContent">
+    <div class="outerTextDiv outerTextDivSmall col-xs-6">
+        <div class="innerTextDiv col-xs-11">
+            <h2>Welcome to the City of Angels</h2>
+        </div>
+    </div>
 
+    <div class="outerTextDiv outerTextDivSmall col-xs-6">
+        <div class="innerTextDiv col-xs-11">
+            <h2>What's Your Name?</h2>
+            <input type="text" placeholder="Angeleno" class="nameInput">
+        </div>
+    </div>
+    <div class="outerTextDiv outerTextDivLarge col-xs-12">
+        <div class="innerTextDiv col-xs-11">
+            <h2>Choose Your Avatar</h2>
+            <div class=" avatarDiv col-xs-1">
+                <img id="avatarImg1" src="">
+            </div>
+            <div class=" avatarDiv col-xs-1">
+                <img id="avatarImg2" src="">
+            </div>
+            <div class="avatarDiv col-xs-1">
+                <img id="avatarImg3" src="">
+            </div>
+            <div class="avatarDiv col-xs-1">
+                <img id='avatarImg4' src="">
+            </div>
+            <div class=" avatarDiv col-xs-1">
+                <img id='avatarImg5' src="">
+            </div>
+        </div>
+    </div>
+    <button>start exploring</button>
+    <audio controls loop hidden id="audio" src=""></audio>
+</div>
+<div class="playDiv">
+    <button id="playButton"><span id="playIcon" class="glyphicon glyphicon-play"></span></button>
+</div>
 </body>
 </html>
+
