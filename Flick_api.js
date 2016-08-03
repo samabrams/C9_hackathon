@@ -32,7 +32,7 @@ function loadAvatarData(person) {
             console.log('test', response);
             avatarArea = $('.avatarDiv');
             photoArray = response.photos.photo;
-            for (var i = 0; i < 5; i++) {
+            for (var i = 1; i <= 5; i++) {
                 var randomNumber = Math.floor(Math.random() * photoArray.length);
                 var url = avatarUrlCreate(photoArray[randomNumber]);
                 console.log('url: ', url);
@@ -40,10 +40,8 @@ function loadAvatarData(person) {
                     console.log('invalid url');
                     break;
                 }
-                var img = $('<img>', {
-                    src: url
-                });
-                avatarArea.append(img);
+                var imgQueryString = '#avatarImg' + i;
+                $(imgQueryString).attr('src', url);
             }
        }
      })
@@ -51,5 +49,5 @@ function loadAvatarData(person) {
 
 
 $(document).ready(function () {
-        loadAvatarData('people');
+        loadAvatarData('los angeles person');
 });
