@@ -44,7 +44,7 @@ body {
     position: relative;
     left: 15%;
     background-color: #F8BBD0;
-    height: 400px;
+    height: 300px;
     margin: 20px;
     border-radius: 5px;
     box-shadow: 0 7px 12px rgba(0,0,0,0.56);
@@ -64,11 +64,29 @@ body {
     height: 85%;
     background-color: whitesmoke;
     border-radius: 3px;
+    text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+}
+.innerTextDivSmall {
+    height: 15%;
+    top: 75%;
+    transform: translate(-50%, 0);
+    font-size: 1.5em;
+}
+.innerTextDivLarge {
+
 }
 .innerTextDiv h2 {
     color: rgba(0, 0, 0, .83);
     text-align: center;
+
+}
+.question {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
 }
 .nameInput {
     position: absolute;
@@ -84,23 +102,15 @@ body {
 .nameInput:focus {
     outline: 0;
 }
-.optionImgDiv {
+.optionDiv img {
+    height: 70%;
     position: absolute;
-    top: 50%;
+    top: 2%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    height: 90%;
-    background-color:#FFD740;
+    transform: translateX(-50%);
     border-radius: 3px;
+    border: 12px solid #FFD740;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .36);
-}
-.optionImgDiv img {
-    height: 95%;
-    width: 95%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 .avatarDiv {
     position: relative;
@@ -151,6 +161,33 @@ button:focus {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.assignedAvatar{
-    background-color: blue;
+.assignedAvatar {
+    background-color: #E91E63;
+}
+
+.optionDiv p {
+    display: inline;
+}
+.outerLabelDiv{
+    position: relative;
+    bottom: 5%;
+    left: 15%;
+    height: 60px;
+    margin: 20px;
+    border-radius: 3px;
+    background-color: #E91E63;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
+}
+.innerLabelDiv {
+    height: 85%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 3px;
+    text-align: center;
+    color: rgba(0, 0, 0, .83);
+    font-size: 2em;
+    transform: translate(-50%, -50%);
+    background-color: whitesmoke;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
 }
