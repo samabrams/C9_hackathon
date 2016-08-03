@@ -81,6 +81,9 @@ body {
     background-color: whitesmoke;
     border-bottom: 1px solid #E91E63;
 }
+.nameInput:focus {
+    outline: 0;
+}
 .optionImgDiv {
     position: absolute;
     top: 50%;
