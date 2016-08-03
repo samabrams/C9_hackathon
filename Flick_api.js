@@ -31,9 +31,16 @@ function loadAvatarData(person) {
         success: function (response) {
             console.log('test', response);
             avatarArea = $('.avatarDiv');
+
             photoArray = response.photos.photo;
+            var chosenNums = [];
             for (var i = 1; i <= 5; i++) {
                 var randomNumber = Math.floor(Math.random() * photoArray.length);
+                while (chosenNums.indexOf(randomNumber) != -1){
+                    console.log('preventing duplicate');
+                    randomNumber = Math.floor(Math.random() * photoArray.length);
+                }
+                chosenNums.push(randomNumber);
                 var url = avatarUrlCreate(photoArray[randomNumber]);
                 console.log('url: ', url);
                 if (!url) {
@@ -49,5 +56,5 @@ function loadAvatarData(person) {
 
 
 $(document).ready(function () {
-        loadAvatarData('los angeles person');
+        loadAvatarData('los angeles trendy');
 });
