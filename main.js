@@ -52,6 +52,14 @@ function processResults(results, status) {
         placeDiv = $('<div>').addClass('optionDiv col-xs-4');
         placeDiv.append(placeImage, placeNameDiv);
         $('.mainContent').append(placeDiv);
+        $(placeDiv).click(function(){
+            if ($(this).is('.optionDiv:last-child')){
+                //handle first option clicked
+            }
+            else {
+              //handle first option clicked
+            }
+        });
         console.log('results array: ', results);
         console.log('results array length: ', results.length);
         console.log('random place: ', place.name);
@@ -123,6 +131,12 @@ function buildTemplate(){
     option2InnerLabelDiv = $('<div>').addClass('innerLabelDiv col-xs-10');
     option2OuterLabelDiv.append(option2InnerLabelDiv);
     $('.mainContent').append(mainTextDivBottom, option1OuterLabelDiv,option2OuterLabelDiv);
+    $(option1OuterLabelDiv).click(function(){
+        //handle first option clicked
+    });
+    $(option2OuterLabelDiv).click(function(){
+       //handle second option clicked
+    });
 }
 function breakfastTime(){
     var breakfastQuestion = $('<h2>').text('You wake up to the light of California sunshine pouring through your hotel window. You’re hungry. Breakfast?').addClass('question');
@@ -211,6 +225,7 @@ $(document).ready(function(){
         buildTemplate();
         breakfastTime();
     });
+
     initializeMap();
     poweredByGoogle();
 });
