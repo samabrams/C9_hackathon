@@ -3,8 +3,7 @@
  */
 
 var mainTextDivBottom;
-var option1Label;
-var option2Label;
+var option1OuterLabelDiv, option2OuterLabelDiv, option1InnerLabelDiv, option2InnerLabelDiv;
 var googleMap;//variable used to create Google Maps object
 var googleService;//variable used to create new Google Service object
 var losAngeles = {lat: 34.0522, lng: -118.2437};//sets the lattitude and longtitude for Los Angeles
@@ -115,21 +114,29 @@ function clearMainContent(){
 }
 function buildTemplate(){
     mainTextDivBottom = $('<div>').addClass('outerTextDiv outerTextDivLarge col-xs-12');
-    mainTextDivTop = $('<div>').addClass('innerTextDiv col-xs-11');
+    mainTextDivTop = $('<div>').addClass('innerTextDiv innerTextDivLarge col-xs-11');
     $(mainTextDivBottom).append(mainTextDivTop);
-    option1Label = $('<div>').addClass('innerTextDiv innerTextDivSmall col-xs-4');
-    option2Label = $('<div>').addClass('innerTextDiv innerTextDivSmall col-xs-4');
-    $('.mainContent').append(mainTextDivBottom, option1Label,option2Label);
+    option1OuterLabelDiv = $('<div>').addClass('outerLabelDiv col-xs-4');
+    option1InnerLabelDiv = $('<div>').addClass('innerLabelDiv col-xs-10');
+    option1OuterLabelDiv.append(option1InnerLabelDiv);
+    option2OuterLabelDiv = $('<div>').addClass('outerLabelDiv col-xs-4');
+    option2InnerLabelDiv = $('<div>').addClass('innerLabelDiv col-xs-10');
+    option2OuterLabelDiv.append(option2InnerLabelDiv);
+
+
+    $('.mainContent').append(mainTextDivBottom, option1OuterLabelDiv,option2OuterLabelDiv);
 }
 function breakfastTime(){
-    var breakfastQuestion = 'You wake up to the light of California sunshine pouring through your hotel window. You’re hungry. Breakfast?';
-    var breakfastOption1 = 'Eggs at ';
-    var breakfastOption2 =  'Pancakes at ';
+    var breakfastQuestion = $('<h2>').text('You wake up to the light of California sunshine pouring through your hotel window. You’re hungry. Breakfast?').addClass('question');
+    var breakfastOption1 = 'Pancakes';
+    var breakfastOption2 =  'Eggs';
     var breakfastOption1ChosenText = 'It’s LA, you figure, so you go with the Huevos Rancheros. They’re good. You think they’re better than they are at home, but you wonder if you’re just telling yourself that.';
     var breakfastOption2ChosenText = 'Pancakes, yes! Not very LA, maybe, and sure, there are a hundred places back home with pancakes at least as good, but they’re comforting all the same. You feel like you’ve got your bearings in California now. You’re ready for the day.';
-    $(mainTextDivTop).text(breakfastQuestion);
-    $(option1Label).text(breakfastOption1);
-    $(option2Label).text(breakfastOption2);
+    $(mainTextDivTop).append(breakfastQuestion);
+    $(option1InnerLabelDiv).text(breakfastOption1);
+    $(option2InnerLabelDiv).text(breakfastOption2);
+    googleTextSearch('pancakes');
+    googleTextSearch('breakfast eggs');
 }
 $(document).ready(function(){
     listenAjax();
@@ -137,8 +144,7 @@ $(document).ready(function(){
     $('.startButton').click(function(){
         clearMainContent();
         buildTemplate();
-        googleTextSearch('pancakes');
-        googleTextSearch('breakfast eggs');
+        breakfastTime();
     });
     initializeMap();
     poweredByGoogle();
