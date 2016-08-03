@@ -100,10 +100,13 @@ function listenAjax() {
 
     });
 }
-
+function clearMainContent(){
+    $('.mainContent > *').remove();
+}
 $(document).ready(function(){
     listenAjax();
     $('#playButton').click(playPause);
+    $('.startButton').click(clearMainContent);
     initializeMap();
     poweredByGoogle();
 });
