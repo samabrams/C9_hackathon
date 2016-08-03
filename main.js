@@ -2,6 +2,15 @@
  * Created by rosemariegonzales on 8/2/16.
  */
 
+var mainTextDivBottom;
+var option1Div;
+var option2Div;
+var option1Img;
+var option2Img;
+var option1Label;
+var option2Label;
+var placeName;
+var placeImageURL;
 var googleMap;//variable used to create Google Maps object
 var googleService;//variable used to create new Google Service object
 var losAngeles = {lat: 34.0522, lng: -118.2437};//sets the lattitude and longtitude for Los Angeles
@@ -25,6 +34,7 @@ function googleTextSearch(googleQueryValue){
         radius: 1000,
         query: googleQueryValue
     }, processResults);
+
 }
 
 //Function to call in order to process results from the googleTextSearch function
@@ -35,13 +45,9 @@ function processResults(results, status) {
     } else {
         //Randomly pick a place from the results based on player's choice
         var resultsIndex = Math.floor(Math.random() * results.length);
-        place = results[resultsIndex];
+        var place = results[resultsIndex];
         var placeName = $('<p>').text(place.name);
         var placeImageURL = place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500});
-        var placeImage = $('<img>').attr('src', placeImageURL);
-        var placeContainer = $('<div>');
-        placeContainer.append(placeImage, placeName);
-        $('body').append(placeContainer);
         console.log('results array: ', results);
         console.log('results array length: ', results.length);
         console.log('resultsIndex: ', resultsIndex);
@@ -103,10 +109,39 @@ function listenAjax() {
 function clearMainContent(){
     $('.mainContent > *').remove();
 }
+function buildTemplate(){
+    mainTextDivBottom = $('<div>').addClass('outerTextDiv outerTextDivLarge col-xs-12');
+    mainTextDivTop = $('<div>').addClass('innerTextDiv col-xs-11');
+    $(mainTextDivBottom).append(mainTextDivTop);
+    option1Div = $('<div>').addClass('optionDiv col-xs-4');
+    option2Div = $('<div>').addClass('optionDiv col-xs-4');
+    option1Img = $('<img>').attr('src', '');
+    option2Img = $('<img>').attr('src', '');
+    option1Label = $('<div>').addClass('innerTextDiv innerTextDivSmall col-xs-10');
+    option2Label = $('<div>').addClass('innerTextDiv innerTextDivSmall col-xs-10');
+    $(option1Div).append(option1Img, option1Label);
+    $(option2Div).append(option2Img, option2Label);
+    $(option1Div).append(option1Img, option1Label);
+    $(option2Div).append(option2Img, option2Label);
+    $('.mainContent').append(mainTextDivBottom, option1Div, option2Div);
+}
+function breakfastTime(){
+    var breakfastQuestion = 'You wake up to the light of California sunshine pouring through your hotel window. You’re hungry. Breakfast?';
+    var breakfastOption1 = 'Eggs at ';
+    var breakfastOption2 =  'Pancakes at ';
+    var breakfastOption1ChosenText = 'It’s LA, you figure, so you go with the Huevos Rancheros. They’re good. You think they’re better than they are at home, but you wonder if you’re just telling yourself that.';
+    var breakfastOption2ChosenText = 'Pancakes, yes! Not very LA, maybe, and sure, there are a hundred places back home with pancakes at least as good, but they’re comforting all the same. You feel like you’ve got your bearings in California now. You’re ready for the day.';
+    $(mainTextDivTop).text(breakfastQuestion);
+    $(option1Label).text(breakfastOption1);
+    $(option2Label).text(breakfastOption2);
+}
 $(document).ready(function(){
     listenAjax();
     $('#playButton').click(playPause);
-    $('.startButton').click(clearMainContent);
+    $('.startButton').click(function(){
+        clearMainContent();
+        breakfastTime();
+    });
     initializeMap();
     poweredByGoogle();
 });

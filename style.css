@@ -44,7 +44,7 @@ body {
     position: relative;
     left: 15%;
     background-color: #F8BBD0;
-    height: 400px;
+    height: 350px;
     margin: 20px;
     border-radius: 5px;
     box-shadow: 0 7px 12px rgba(0,0,0,0.56);
@@ -66,6 +66,11 @@ body {
     border-radius: 3px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
 }
+.innerTextDivSmall {
+    height: 15%;
+    top: 75%;
+    transform: translate(-50%, 0);
+}
 .innerTextDiv h2 {
     color: rgba(0, 0, 0, .83);
     text-align: center;
@@ -84,23 +89,15 @@ body {
 .nameInput:focus {
     outline: 0;
 }
-.optionImgDiv {
+.optionDiv img {
+    height: 70%;
     position: absolute;
-    top: 50%;
+    top: 2%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    height: 90%;
-    background-color:#FFD740;
+    transform: translateX(-50%);
     border-radius: 3px;
+    border: 12px solid #FFD740;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .36);
-}
-.optionImgDiv img {
-    height: 95%;
-    width: 95%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 .avatarDiv {
     position: relative;
@@ -150,4 +147,7 @@ button:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+.optionDiv p {
+    display: inline;
 }
