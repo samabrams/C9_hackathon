@@ -1,7 +1,8 @@
 /**
  * Created by rosemariegonzales on 8/2/16.
  */
-
+var morningActivityChoice;
+var beverageChoiceResult;
 var mainTextDivBottom;
 var option1OuterLabelDiv, option2OuterLabelDiv, option1InnerLabelDiv, option2InnerLabelDiv;
 var question, option1, option2, option1ChosenText, option2ChosenText;
@@ -50,6 +51,13 @@ function processResults(results, status) {
         placeName = place.name;
         placeNameDiv = $('<div>').addClass('innerTextDiv innerTextDivSmall col-xs-10');
         placeNameDiv.append("<p>").text(placeName);
+        while (!place.photos){
+            var resultsIndex = Math.floor(Math.random() * results.length);
+            place = results[resultsIndex];
+            placeName = place.name;
+            placeNameDiv = $('<div>').addClass('innerTextDiv innerTextDivSmall col-xs-10');
+            placeNameDiv.append("<p>").text(placeName);
+        }
         placeImageURL = place.photos[0].getUrl({'maxWidth': 500, 'maxHeight': 500});
         placeImage = $('<img>').attr('src', placeImageURL);
         placeDiv = $('<div>').addClass('optionDiv col-xs-4');
@@ -58,11 +66,24 @@ function processResults(results, status) {
         $(placeDiv).click(function () {
             if ($(this).is('.optionDiv:last-child')) {
                 //handle second option clicked
+                if (option2 == 'Museum') {
+                    morningActivityChoice = option1;
+                }
+                if (option1 == 'Long Island Iced Tea'){
+                    beverageChoiceResult = 'drunk';
+                }
                 $('.optionChosen').text(option2ChosenText);
                 $('#chosenOptionModal').modal();
             }
             else {
                 //handle first option clicked
+                console.log('option1: ', option1);
+                if (option1 == 'Art Gallery') {
+                    morningActivityChoice = option1;
+                }
+                if (option1 == 'Juice'){
+                    beverageChoiceResult = 'refreshed';
+                }
                 $('.optionChosen').text(option1ChosenText);
                 $('#chosenOptionModal').modal();
             }
@@ -145,11 +166,24 @@ function buildTemplate() {
     $('.mainContent').append(mainTextDivBottom, option1OuterLabelDiv, option2OuterLabelDiv);
     $(option1OuterLabelDiv).click(function () {
         //handle first option clicked
+        console.log('option1: ', option1);
+        if (option1 == 'Art Gallery') {
+            morningActivityChoice = option1;
+        }
+        if (option1 == 'Juice'){
+            beverageChoiceResult = 'refreshed';
+        }
         $('.optionChosen').text(option1ChosenText);
         $('#chosenOptionModal').modal();
     });
     $(option2OuterLabelDiv).click(function () {
         //handle second option clicked
+        if (option2 == 'Museum') {
+            morningActivityChoice = option1;
+        }
+        if (option1 == 'Long Island Iced Tea'){
+            beverageChoiceResult = 'drunk';
+        }
         $('.optionChosen').text(option2ChosenText);
         $('#chosenOptionModal').modal();
     });
@@ -185,14 +219,20 @@ function morningActivity() {
     nextFunction = morningBeverage;
 }
 function morningBeverage() {
-    question = 'Breakfast, check. ' + variableTBD + ', check. But now you’re starting to feel the dry heat of a Southern California summer. What kind of refreshment are you craving?';
-    option1 = 'Juice at ';
-    option2 = 'Long Island Iced Tea at ';
+    clearOptionDivs();
+    question.text('Breakfast, check. ' + morningActivityChoice + ', check. But now you’re starting to feel the dry heat of a Southern California summer. What kind of refreshment are you craving?');
+    option1 = 'Juice';
+    option2 = 'Long Island Iced Tea';
     option1ChosenText = 'You go for a nice juice blend. Something with oranges and, weirdly, avocados. When in Rome, right? The girl behind the counter keeps coughing into her hand, though. Gross.';
     option2ChosenText = 'You’re liking California, but you think you might like it a little more if you were a lot drunker. You grab a Long Island Iced Tea for a quick jump start, and you meet a sweaty, conversational man. You enjoy the conversation well enough, but you kinda can’t stop thinking about how sweaty he is. You’re not sure it’s normal.';
+    $(option1InnerLabelDiv).text(option1);
+    $(option2InnerLabelDiv).text(option2);
+    googleTextSearch('juice shop');
+    googleTextSearch('bar');
+    nextFunction = lunchTime;
 }
 function lunchTime() {
-    question = 'You’re a little ' + variableTBD + ' now, and it’s woken your appetite. Which California classic do you want for lunch?';
+    question = 'You’re a little ' + beverageChoiceResult + ' now, and it’s woken your appetite. Which California classic do you want for lunch?';
     option1 = 'Tacos at ';
     option2 = 'In-N-Out';
     option1ChosenText = 'Ok, you get it. Every part of this taco is the best you’ve ever had. How is this the same price as Taco Bell? Not to mention, the line wasn’t even that bad!';

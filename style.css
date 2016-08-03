@@ -165,9 +165,6 @@ button:focus {
     background-color: #E91E63;
 }
 
-.optionDiv p {
-    display: inline;
-}
 .outerLabelDiv{
     position: relative;
     bottom: 5%;
@@ -186,7 +183,7 @@ button:focus {
     border-radius: 3px;
     text-align: center;
     color: rgba(0, 0, 0, .83);
-    font-size: 2em;
+    font-size: 1.5em;
     transform: translate(-50%, -50%);
     background-color: whitesmoke;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
