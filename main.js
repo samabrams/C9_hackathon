@@ -16,6 +16,7 @@ var placeNameDiv;
 var placeImageURL;
 var placeImage;
 var placeDiv;
+var flickrImage;
 var songArray = [];
 var typeOfSong = "aint too proud";
 var userAvatar;
