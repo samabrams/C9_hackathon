@@ -105,7 +105,5 @@ $(document).ready(function(){
     listenAjax();
     $('#playButton').click(playPause);
     initializeMap();
-    googleTextSearch("pancake");
-    googleTextSearch("breakfast eggs");
     poweredByGoogle();
 });
