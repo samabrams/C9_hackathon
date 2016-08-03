@@ -126,13 +126,23 @@ function listenAjax() {
 }
 function clearMainContent() {
     $('.mainContent > *').remove();
+
+
 }
 function avatarClicked() {
     userAvatar = $(this);
     $('.assignedAvatar').removeClass("assignedAvatar");
     userAvatar.addClass('assignedAvatar');
 }
-function buildTemplate() {
+function buildTemplate(avatar, userName) {
+    avatar.removeClass();
+    avatar.addClass('userAvatarDiv col-xs-1');
+    avatar.children().addClass('avatarImage');
+    var avatarDiv = $('<div class="userAvatar">');
+    var userName = $('<p id="userName">').html(userName);
+    avatarDiv.append(avatar);
+    avatar.append(userName);
+    $('#header').append(avatarDiv);
     mainTextDivBottom = $('<div>').addClass('outerTextDiv outerTextDivLarge col-xs-12');
     mainTextDivTop = $('<div>').addClass('innerTextDiv innerTextDivLarge col-xs-11');
     $(mainTextDivBottom).append(mainTextDivTop);
@@ -248,8 +258,10 @@ $(document).ready(function () {
     listenAjax();
     $('#playButton').click(playPause);
     $('.startButton').click(function () {
+        var newAvatar = $('.assignedAvatar');
+        var userName = $('.nameInput').val();
         clearMainContent();
-        buildTemplate();
+        buildTemplate(newAvatar, userName);
         breakfastTime();
     });
     $('.continueButton').click(function(){
