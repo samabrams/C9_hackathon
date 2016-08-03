@@ -1,8 +1,10 @@
 /**
  * Created by rosemariegonzales on 8/2/16.
  */
+var optionsArray = [];
 var morningActivityChoice;
 var beverageChoiceResult;
+var nightDrinksResult;
 var mainTextDivBottom;
 var option1OuterLabelDiv, option2OuterLabelDiv, option1InnerLabelDiv, option2InnerLabelDiv;
 var question, option1, option2, option1ChosenText, option2ChosenText;
@@ -62,27 +64,46 @@ function processResults(results, status) {
         placeImage = $('<img>').attr('src', placeImageURL);
         placeDiv = $('<div>').addClass('optionDiv col-xs-4');
         placeDiv.append(placeImage, placeNameDiv);
-        $('.mainContent').append(placeDiv);
+        optionsArray.push(placeDiv);
+        console.log('optionsArray: ', optionsArray);
+        if (optionsArray.length == 2) {
+            $('.mainContent').append(optionsArray[0], optionsArray[1]);
+        }
         $(placeDiv).click(function () {
             if ($(this).is('.optionDiv:last-child')) {
                 //handle second option clicked
                 if (option2 == 'Museum') {
                     morningActivityChoice = option1;
                 }
-                if (option1 == 'Long Island Iced Tea'){
+                if (option2 == 'Long Island Iced Tea'){
                     beverageChoiceResult = 'drunk';
+                }
+                if (option2 == 'Cocktails'){
+                    nightDrinksResult = 'Time to see if the people at the club are more receptive of your game';
+                }
+                if (option2 == 'This girl'){
+                    partnerChoiceSubjPron = 'she';
+                    partnerChoiceObjPron = 'her';
+                    partnerChoicePossPron = 'her';
                 }
                 $('.optionChosen').text(option2ChosenText);
                 $('#chosenOptionModal').modal();
             }
             else {
                 //handle first option clicked
-                console.log('option1: ', option1);
                 if (option1 == 'Art Gallery') {
                     morningActivityChoice = option1;
                 }
                 if (option1 == 'Juice'){
                     beverageChoiceResult = 'refreshed';
+                }
+                if (option1 == 'Beer'){
+                    nightDrinksResult = 'Time to the hit the club with your new squad';
+                }
+                if (option1 == 'This guy'){
+                    partnerChoiceSubjPron = 'he';
+                    partnerChoiceObjPron = 'him';
+                    partnerChoicePossPron = 'his';
                 }
                 $('.optionChosen').text(option1ChosenText);
                 $('#chosenOptionModal').modal();
@@ -147,6 +168,7 @@ function listenAjax() {
 }
 function clearMainContent() {
     $('.mainContent > *').remove();
+
 }
 function avatarClicked() {
     userAvatar = $(this);
@@ -173,6 +195,14 @@ function buildTemplate() {
         if (option1 == 'Juice'){
             beverageChoiceResult = 'refreshed';
         }
+        if (option1 == 'Beer'){
+            nightDrinksResult = 'Time to the hit the club with your new squad';
+        }
+        if (option1 == 'This guy'){
+            partnerChoiceSubjPron = 'he';
+            partnerChoiceObjPron = 'him';
+            partnerChoicePossPron = 'his';
+        }
         $('.optionChosen').text(option1ChosenText);
         $('#chosenOptionModal').modal();
     });
@@ -181,8 +211,16 @@ function buildTemplate() {
         if (option2 == 'Museum') {
             morningActivityChoice = option1;
         }
-        if (option1 == 'Long Island Iced Tea'){
+        if (option2 == 'Long Island Iced Tea'){
             beverageChoiceResult = 'drunk';
+        }
+        if (option2 == 'Cocktails'){
+            nightDrinksResult = 'Time to see if the people at the club are more receptive of your game';
+        }
+        if (option2 == 'This girl'){
+            partnerChoiceSubjPron = 'she';
+            partnerChoiceObjPron = 'her';
+            partnerChoicePossPron = 'her';
         }
         $('.optionChosen').text(option2ChosenText);
         $('#chosenOptionModal').modal();
@@ -190,6 +228,7 @@ function buildTemplate() {
 }
 function clearOptionDivs() {
     $('.optionDiv').remove();
+    optionsArray = [];
 }
 function breakfastTime() {
     clearOptionDivs();
@@ -202,7 +241,11 @@ function breakfastTime() {
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
     googleTextSearch('pancakes');
-    googleTextSearch('breakfast eggs');
+    setTimeout(function() {
+        if (optionsArray.length == 1) {
+            googleTextSearch('breakfast eggs');
+        }
+    }, 700);
     nextFunction = morningActivity;
 }
 function morningActivity() {
@@ -214,8 +257,12 @@ function morningActivity() {
     option1ChosenText = 'LA artists are doing things a little differently, you decide. You’re not sure if you get it. But there’s not much of a crowd yet, so you get to take your time pondering.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('museum');
     googleTextSearch('art gallery');
+    setTimeout(function() {
+        if (optionsArray.length == 1) {
+            googleTextSearch('museum');
+        }
+    }, 1000);
     nextFunction = morningBeverage;
 }
 function morningBeverage() {
@@ -228,7 +275,11 @@ function morningBeverage() {
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
     googleTextSearch('juice');
-    googleTextSearch('bar');
+    setTimeout(function() {
+        if (optionsArray.length == 1) {
+            googleTextSearch('bar');
+        }
+    }, 1500);
     nextFunction = lunchTime;
 }
 function lunchTime() {
@@ -240,8 +291,12 @@ function lunchTime() {
     option1ChosenText = 'You order as many things as you can remember from the Secret Menu. You feel like a local. You thought it’d be jam packed for a summer lunch, but you get through the drive thru in 15 minutes or so. You’re starting to think you picked the perfect time to visit.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('tacos');
     googleTextSearch('in-n-out');
+    setTimeout(function() {
+        if (optionsArray.length == 1) {
+            googleTextSearch('tacos');
+        }
+    }, 1000);
     nextFunction = afternoonActivity;
 }
 function afternoonActivity() {
@@ -253,89 +308,100 @@ function afternoonActivity() {
     option2ChosenText = 'You’d heard great things about this little bookstore, but it seems like you’re the only one who heard great things. You get to scour its shelves by your lonesome, and you stay well away from the clerk, who’s visibly sick. He seems fine with that. He hardly moves the whole time you’re there.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('tacos');
-    googleTextSearch('in-n-out');
-    nextFunction = afternoonActivity;
+    googleTextSearch('park');
+    setTimeout(function() {
+        if (optionsArray.length == 1) {
+            googleTextSearch('bookstore');
+        }
+    }, 1500);
+    nextFunction = dinnerTime;
 }
 function dinnerTime() {
     clearOptionDivs();
-    question = 'The day’s activities have led you to a natural conclusion: you need noodles. But which kind?';
-    option1 = 'Thai at ';
-    option2 = 'Italian at ';
+    question.text('The day’s activities have led you to a natural conclusion: you need noodles. But which kind?');
+    option1 = 'Thai';
+    option2 = 'Italian';
     option1ChosenText = 'There are people here this time, but they don’t seem that into the food. They poke at it occasionally, but they spend most of their time leaning against the wall beside their tables.';
     option2ChosenText = 'Another sparse crowd. You wonder what’s going on, but you decide that Italian is probably just a weird choice for LA. The noodles are solid though. You’re satisfied.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('tacos');
-    googleTextSearch('in-n-out');
-    nextFunction = afternoonActivity;
+    googleTextSearch('thai noodles');
+    setTimeout(function() {
+        if (optionsArray.length == 1) {
+            googleTextSearch('italian noodles');
+        }
+    }, 1500);
+    nextFunction = afterDinnerDrinks;
 }
 function afterDinnerDrinks() {
     clearOptionDivs();
-    question = 'Okay, this is what it’s all about. Time to experience the LA nightlife. Drinks first, but beer or liquor?';
-    option1 = 'Beer at  ';
-    option2 = 'Cocktails at ';
+    question.text('Okay, this is what it’s all about. Time to experience the LA nightlife. Drinks first, but beer or liquor?');
+    option1 = 'Beer';
+    option2 = 'Cocktails';
     option1ChosenText = 'You drink five or six or eight or ten beers over the course of a couple of hours, and you decide the other three dudes in the bar are your best friends.';
     option2ChosenText = 'There are only a few people at the bar, but you strike up a conversation with one of them, and it goes… okay. But as you both get drunker, it seems more and like you’re fighting. Doesn’t seem like you’ll be taking this one back to the hotel.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('tacos');
-    googleTextSearch('in-n-out');
-    nextFunction = afternoonActivity;
+    googleTextSearch('beer bar');
+    setTimeout(function() {
+        if (optionsArray.length == 1) {
+            googleTextSearch('cocktail bar');
+        }
+    }, 1000);
+    nextFunction = nightClub;
 }
 function nightClub() {
     clearOptionDivs();
-    question = variableTBD + 'Which club feels like your style';
-    optionChosenText = 'This club really feels like the one. You’re feeling great about your chances.';
+    question.text(nightDrinksResult + '. Which club feels like your style?');
+    option1 = 'Dance Club';
+    option2 = 'Strip Club';
+    option1ChosenText = 'This club really feels like the one. You’re feeling great about your chances.';
+    option2ChosenText = 'This club really feels like the one. You’re feeling great about your chances.'
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('tacos');
-    googleTextSearch('in-n-out');
-    nextFunction = afternoonActivity;
+    googleTextSearch('dance club');
+    setTimeout(function() {
+        if (optionsArray.length == 1) {
+            googleTextSearch('strip club');
+        }
+    }, 1500);
+    nextFunction = choosePartner;
 }
 function choosePartner() {
-    clearOptionDivs();
-    question = 'Your confidence is soaring. You feel like you have your pick of anyone in the club. Who do you try your hand with?';
+    question.text('Your confidence is soaring. You feel like you have your pick of anyone in the club. Who do you try your hand with?');
+    option1= 'This guy';
+    option2 = 'This girl';
     option1ChosenText = 'He’s really picking up what you’re putting down. He’s sweating a lot, but hey, sometimes that’s what happens when you dance. You decide to bring him back to the hotel.';
     option2ChosenText = 'Your moves are working. You love it. She loves it. She’s not saying a lot, but she does agree to go back to your hotel. It’s cool, you like quiet girls.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('tacos');
-    googleTextSearch('in-n-out');
-    nextFunction = afternoonActivity;
+    nextFunction = waterOrMedicine;
 }
 function waterOrMedicine() {
-    clearOptionDivs();
-    question = 'You’re back at the hotel. Things start to pick up, but your partner needs to take a break. (She/he) lies down on your couch. (She/he) really doesn’t seem to be feeling well. How do you help?';
+    question = 'You’re back at the hotel. Things start to pick up, but your partner needs to take a break. '+partnerChoiceSubjPron+' lies down on your couch. '+partnerChoiceSubjPron+' really doesn’t seem to be feeling well. How do you help?';
     option1 = 'Get water from the kitchen';
     option2 = 'Get medicine from the bathroom';
-    optionChosenText = 'You come back from the ' + variableTBD + '. Your couch is empty. Lame. They could’ve just told you if they weren’t into it.';
+    optionChosenText = 'You come back to the living room. Your couch is empty. Lame. They could’ve just told you if they weren’t into it.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
     googleTextSearch('tacos');
     googleTextSearch('in-n-out');
-    nextFunction = afternoonActivity;
+    nextFunction = respondToZombie;
 }
 function respondToZombie() {
-    clearOptionDivs();
-    question = 'You open the door to your hotel room just to check, and there ' + variableTBD + ' is, facing away from you, a little hunched, breathing heavily. You place a concerned hand on ' + variableTBD + ' shoulder, and ' + variableTBD + ' turns around. ' + variableTBD + ' looks way different. You wonder how drunk you really were. You ask how ' + variableTBD + ' feeling, but ' + variableTBD + ' answer isn’t in English. It doesn’t even really seem human. You don’t know what’s happening, but you’re scared, really scared. How do you handle it?';
+    question = 'You open the door to your hotel room just to check, and there ' + partnerChoiceSubjPron + ' is, facing away from you, a little hunched, breathing heavily. You place a concerned hand on ' + partnerChoicePossPron + ' shoulder, and ' + partnerChoiceSubjPron + ' turns around. ' + partnerChoiceSubjPron + ' looks way different. You wonder how drunk you really were. You ask how ' + partnerChoiceSubjPron + '\'s feeling, but ' + partnerChoicePossPron + ' answer isn’t in English. It doesn’t even really seem human. You don’t know what’s happening, but you’re scared, really scared. How do you handle it?';
     option1 = 'Try to run';
     option2 = 'Shit yourself';
-    option1ChosenText = 'You try to run, but where do you run? ' + variableTBD + ' in the doorway, and you’re on the 5th floor. You try to rush past ' + variableTBD + ', and you make a nice move, but as you pull away, you feel the tail of your shirt pull against you. You turn your head, and ' + variableTBD + ' pulls you toward ' + variableTBD + '. You didn’t realize ' + variableTBD + ' was so strong.';
-    option2ChosenText = 'You freeze. You want to run or do something, anything, but you feel yourself lose control of your bowels. Before you can close the door, ' + variableTBD + ' reaches out and clasps a surprisingly strong hand around your throat.';
+    option1ChosenText = 'You try to run, but where do you run? ' + partnerChoiceSubjPron + '\'s in the doorway, and you’re on the 5th floor. You try to rush past ' + partnerChoiceObjPron + ', and you make a nice move, but as you pull away, you feel the tail of your shirt pull against you. You turn your head, and ' + partnerChoiceSubjPron + ' pulls you toward ' + partnerChoiceObjPron + '. You didn’t realize ' + partnerChoiceSubjPron + ' was so strong.';
+    option2ChosenText = 'You freeze. You want to run or do something, anything, but you feel yourself lose control of your bowels. Before you can close the door, ' + partnerChoiceSubjPron + ' reaches out and clasps a surprisingly strong hand around your throat.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('tacos');
-    googleTextSearch('in-n-out');
-    nextFunction = afternoonActivity;
+    nextFunction = zombieBreakfastTime;
 }
 function zombieBreakfastTime() {
-    clearOptionDivs();
     question = 'You wake up to the light of California sunshine pouring through your hotel window. You’re hungry. Breakfast?';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('tacos');
-    googleTextSearch('in-n-out');
     nextFunction = afternoonActivity;
 }
 $(document).ready(function () {
