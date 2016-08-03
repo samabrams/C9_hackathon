@@ -161,6 +161,10 @@ button:focus {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.assignedAvatar {
+    background-color: #E91E63;
+}
+
 .optionDiv p {
     display: inline;
 }

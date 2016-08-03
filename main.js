@@ -17,6 +17,7 @@ var placeImage;
 var placeDiv;
 var songArray = [];
 var typeOfSong = "aint too proud";
+var userAvatar;
 
 //Initialize Google Map and sets the location to the city of Los Angeles
 function initializeMap() {
@@ -125,6 +126,11 @@ function listenAjax() {
 }
 function clearMainContent() {
     $('.mainContent > *').remove();
+}
+function avatarClicked() {
+    userAvatar = $(this);
+    $('.assignedAvatar').removeClass("assignedAvatar");
+    userAvatar.addClass('assignedAvatar');
 }
 function buildTemplate() {
     mainTextDivBottom = $('<div>').addClass('outerTextDiv outerTextDivLarge col-xs-12');
@@ -251,4 +257,5 @@ $(document).ready(function () {
     });
     initializeMap();
     poweredByGoogle();
+    $(".avatarDiv").click(avatarClicked);
 });
