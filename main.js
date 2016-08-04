@@ -71,6 +71,8 @@ function processResults(results, status) {
         optionsArray.push(placeDiv);
         console.log('optionsArray: ', optionsArray);
         if (optionsArray.length == 2) {
+            optionsArray[0]. attr('id','optionDiv1');
+            optionsArray[1].attr('id', 'optionDiv2');
             $('.mainContent').append(optionsArray[0], optionsArray[1]);
         }
         $(placeDiv).click(function () {
@@ -246,6 +248,9 @@ function clearOptionDivs() {
     $('.optionDiv').remove();
     optionsArray = [];
 }
+function clearOptionDivChildren(){
+   $('.optionDiv *').remove();
+}
 /** 1st game situation - breakfast. */
 function breakfastTime() {
     clearOptionDivs();
@@ -262,7 +267,7 @@ function breakfastTime() {
         if (optionsArray.length == 1) {
             googleTextSearch('breakfast eggs');
         }
-    }, 1000);
+    }, 1500);
     nextFunction = morningActivity;
 }
 /** 2nd game situation - morning activity. */
@@ -280,7 +285,7 @@ function morningActivity() {
         if (optionsArray.length == 1) {
             googleTextSearch('museum');
         }
-    }, 1000);
+    }, 1500);
     nextFunction = morningBeverage;
 }
 /** 3rd game situation - morning beverage. */
@@ -316,7 +321,7 @@ function lunchTime() {
         if (optionsArray.length == 1) {
             googleTextSearch('tacos');
         }
-    }, 1000);
+    }, 1500);
     nextFunction = afternoonActivity;
 }
 /** 5th game situation - afternoon activity. */
@@ -370,7 +375,7 @@ function afterDinnerDrinks() {
         if (optionsArray.length == 1) {
             googleTextSearch('cocktail bar');
         }
-    }, 1000);
+    }, 1500);
     nextFunction = nightClub;
 }
 /** 8th game situation - night club. */
@@ -393,6 +398,7 @@ function nightClub() {
 }
 /** 9th game situation - patner. */
 function choosePartner() {
+    clearOptionDivChildren();
     question.text('Your confidence is soaring. You feel like you have your pick of anyone in the club. Who do you try your hand with?');
     option1= 'This guy';
     option2 = 'This girl';
@@ -400,37 +406,53 @@ function choosePartner() {
     option2ChosenText = 'Your moves are working. You love it. She loves it. She’s not saying a lot, but she does agree to go back to your hotel. It’s cool, you like quiet girls.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
+    loadFlickrImage('man', 1);
+    loadFlickrImage('woman', 2);
     nextFunction = waterOrMedicine;
 }
 /** 10th game situation - help. */
 function waterOrMedicine() {
-    question = 'You’re back at the hotel. Things start to pick up, but your partner needs to take a break. '+partnerChoiceSubjPron+' lies down on your couch. '+partnerChoiceSubjPron+' really doesn’t seem to be feeling well. How do you help?';
+    question.text('You’re back at the hotel. Things start to pick up, but your partner needs to take a break. '+partnerChoiceSubjPron+' lies down on your couch. '+partnerChoiceSubjPron+' really doesn’t seem to be feeling well. How do you help?');
     option1 = 'Get water from the kitchen';
     option2 = 'Get medicine from the bathroom';
-    optionChosenText = 'You come back to the living room. Your couch is empty. Lame. They could’ve just told you if they weren’t into it.';
+    option1ChosenText = 'You come back to the living room. Your couch is empty. Lame. They could’ve just told you if they weren’t into it.';
+    option2ChosenText = 'You come back to the living room. Your couch is empty. Lame. They could’ve just told you if they weren’t into it.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    googleTextSearch('tacos');
-    googleTextSearch('in-n-out');
+    loadFlickrImage('glass of water', 1);
+    loadFlickrImage('pill bottle', 2);
     nextFunction = respondToZombie;
 }
 /** 11th game situation - zombi. */
 function respondToZombie() {
-    question = 'You open the door to your hotel room just to check, and there ' + partnerChoiceSubjPron + ' is, facing away from you, a little hunched, breathing heavily. You place a concerned hand on ' + partnerChoicePossPron + ' shoulder, and ' + partnerChoiceSubjPron + ' turns around. ' + partnerChoiceSubjPron + ' looks way different. You wonder how drunk you really were. You ask how ' + partnerChoiceSubjPron + '\'s feeling, but ' + partnerChoicePossPron + ' answer isn’t in English. It doesn’t even really seem human. You don’t know what’s happening, but you’re scared, really scared. How do you handle it?';
+    question.addClass('col-xs-10').text('You open the door to your hotel room just to check, and there ' + partnerChoiceSubjPron + ' is, facing away from you, a little hunched, breathing heavily. You place a concerned hand on ' + partnerChoicePossPron + ' shoulder, and ' + partnerChoiceSubjPron + ' turns around. ' + partnerChoiceSubjPron + ' looks way different. You wonder how drunk you really were. You ask how ' + partnerChoiceSubjPron + '\'s feeling, but ' + partnerChoicePossPron + ' answer isn’t in English. It doesn’t even really seem human. You don’t know what’s happening, but you’re scared, really scared. How do you handle it?');
     option1 = 'Try to run';
     option2 = 'Shit yourself';
     option1ChosenText = 'You try to run, but where do you run? ' + partnerChoiceSubjPron + '\'s in the doorway, and you’re on the 5th floor. You try to rush past ' + partnerChoiceObjPron + ', and you make a nice move, but as you pull away, you feel the tail of your shirt pull against you. You turn your head, and ' + partnerChoiceSubjPron + ' pulls you toward ' + partnerChoiceObjPron + '. You didn’t realize ' + partnerChoiceSubjPron + ' was so strong.';
     option2ChosenText = 'You freeze. You want to run or do something, anything, but you feel yourself lose control of your bowels. Before you can close the door, ' + partnerChoiceSubjPron + ' reaches out and clasps a surprisingly strong hand around your throat.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
+    loadFlickrImage('run', 1);
+    loadFlickrImage('poop', 2);
     nextFunction = zombieBreakfastTime;
 }
 /** 11th game situation - zombi breakfast. */
 function zombieBreakfastTime() {
-    question = 'You wake up to the light of California sunshine pouring through your hotel window. You’re hungry. Breakfast?';
+    question.text('You wake up to the light of California sunshine pouring through your hotel window. You’re hungry. Breakfast?');
+    option1 = 'Meal 1';
+    option2 = 'Meal 2';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    nextFunction = afternoonActivity;
+    option1ChosenText = 'Delicious';
+    option2ChosenText = 'Mmmm scrumptious';
+    loadFlickrImage('person', 1);
+    loadFlickrImage('person', 2);
+    nextFunction = gameEnd;
+}
+function gameEnd(){
+    question.text('Game Over. Keep Feasting');
+    $('.outerLabelDiv').remove();
+    $('.optionDiv').remove();
 }
 /**  DOM is ready for JS code to execute. */
 $(document).ready(function () {

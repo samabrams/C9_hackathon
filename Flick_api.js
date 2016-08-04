@@ -76,7 +76,7 @@ function loadAvatarData(person) {
         }
     })
 }
-function loadFlickrImage(searchQuery) {
+function loadFlickrImage(searchQuery, divNum) {
     $.ajax({
         url: 'https://api.flickr.com/services/rest?method=flickr.photos.search&api_key=' + flickrKey + '&format=json&nojsoncallback=1&text=' + searchQuery,
         dataType: 'json',
@@ -93,7 +93,7 @@ function loadFlickrImage(searchQuery) {
                 return;
             }
             flickrImage = $('<img>').attr('src', url).css("margin-top", "10%");
-            placeDiv.append(flickrImage);
+            $('#optionDiv'+divNum).append(flickrImage);
         }
     })
 }

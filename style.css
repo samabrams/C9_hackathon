@@ -203,3 +203,6 @@ button:focus {
 .avatarImage {
     margin-top: 5px;
 }
+.modal {
+    text-size: 2em;
+}
