@@ -188,3 +188,18 @@ button:focus {
     background-color: whitesmoke;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .5);
 }
+.userAvatar {
+    margin-top:5px;
+}
+#userName{
+    text-align: center;
+    font-weight: 800;
+}
+.userAvatarDiv {
+    background-color: #FFD740;
+    border-radius: 3px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, .36);
+}
+.avatarImage {
+    margin-top: 5px;
+}

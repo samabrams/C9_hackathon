@@ -55,7 +55,7 @@ function loadAvatarData(person) {
 }
 function loadFlickrImage(searchQuery) {
     $.ajax({
-        url: 'https://api.flickr.com/services/rest?method=flickr.photos.search&api_key=' + flickrKey + '&format=json&nojsoncallback=1&text=' + person,
+        url: 'https://api.flickr.com/services/rest?method=flickr.photos.search&api_key=' + flickrKey + '&format=json&nojsoncallback=1&text=' + searchQuery,
         dataType: 'json',
         cache: false,
         crossDomain: true,
@@ -69,7 +69,8 @@ function loadFlickrImage(searchQuery) {
                 console.log('invalid url');
                 return;
             }
-
+            flickrImage = $('<img>').attr('src', url).css("margin-top", "10%");
+            placeDiv.append(flickrImage);
         }
     })
 }
