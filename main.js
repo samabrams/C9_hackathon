@@ -253,7 +253,7 @@ function breakfastTime() {
         if (optionsArray.length == 1) {
             googleTextSearch('breakfast eggs');
         }
-    }, 700);
+    }, 1000);
     nextFunction = morningActivity;
 }
 function morningActivity() {
