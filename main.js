@@ -259,6 +259,9 @@ function clearOptionDivChildren(){
 }
 /** 1st game situation - breakfast. */
 function breakfastTime() {
+    songArray = [];
+    typeOfSong = "morning mood";
+    listenAjax();
     clearOptionDivs();
     question = $('<h2>').text('You wake up to the light of California sunshine pouring through your hotel window. You’re hungry. Breakfast?').addClass('question');
     option1 = 'Pancakes';
@@ -278,6 +281,9 @@ function breakfastTime() {
 }
 /** 2nd game situation - morning activity. */
 function morningActivity() {
+    songArray = [];
+    typeOfSong = "girl from ipanema stan getz";
+    listenAjax();
     clearOptionDivs();
     question.text('Your stomach is full, and the local establishments are starting to open. Where to?');
     option2 = 'Museum';
@@ -296,7 +302,6 @@ function morningActivity() {
 }
 /** 3rd game situation - morning beverage. */
 function morningBeverage() {
-    clearOptionDivs();
     question.text('Breakfast, check. ' + morningActivityChoice + ', check. But now you’re starting to feel the dry heat of a Southern California summer. What kind of refreshment are you craving?');
     option1 = 'Juice';
     option2 = 'Long Island Iced Tea';
@@ -314,6 +319,9 @@ function morningBeverage() {
 }
 /** 4th game situation - lunch. */
 function lunchTime() {
+    songArray = [];
+    typeOfSong = "smooth jazz";
+    listenAjax();
     clearOptionDivs();
     question.text('You’re a little ' + beverageChoiceResult + ' now, and it’s woken your appetite. Which California classic do you want for lunch?');
     option2 = 'Tacos';
@@ -407,6 +415,9 @@ function nightClub() {
 }
 /** 9th game situation - patner. */
 function choosePartner() {
+    songArray = [];
+    typeOfSong = "weeknd often";
+    listenAjax();
     clearOptionDivChildren();
     question.text('Your confidence is soaring. You feel like you have your pick of anyone in the club. Who do you try your hand with?');
     option1= 'This guy';
@@ -450,6 +461,9 @@ function respondToZombie() {
 }
 /** 11th game situation - zombi breakfast. */
 function zombieBreakfastTime() {
+    songArray = [];
+    typeOfSong = "walking dead main title";
+    listenAjax();
     question.text('You wake up to the light of California sunshine pouring through your hotel window. You’re hungry. Breakfast?');
     option1 = 'Meal 1';
     option2 = 'Meal 2';
