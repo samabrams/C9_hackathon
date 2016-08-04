@@ -433,8 +433,8 @@ function choosePartner() {
 /** 10th game situation - help. */
 function waterOrMedicine() {
     question.text('You’re back at the hotel. Things start to pick up, but your partner needs to take a break. '+partnerChoiceSubjPronCap+' lies down on your couch. '+partnerChoiceSubjPronCap+' really doesn’t seem to be feeling well. How do you help?');
-    option1 = 'Get water from the kitchen';
-    option2 = 'Get medicine from the bathroom';
+    option1 = 'Get Water';
+    option2 = 'Get Medicine';
     option1ChosenText = 'You come back to the living room. Your couch is empty. Lame. They could’ve just told you if they weren’t into it.';
     option2ChosenText = 'You come back to the living room. Your couch is empty. Lame. They could’ve just told you if they weren’t into it.';
     $(option1InnerLabelDiv).text(option1);
@@ -445,7 +445,7 @@ function waterOrMedicine() {
 }
 /** 11th game situation - zombi. */
 function respondToZombie() {
-    question.addClass('col-xs-10').text('You open the door to your hotel room just to check, and there ' + partnerChoiceSubjPron + ' is, facing away from you, a little hunched, breathing heavily. You place a concerned hand on ' + partnerChoicePossPron + ' shoulder, and ' + partnerChoiceSubjPron + ' turns around. ' + partnerChoiceSubjPronCap + ' looks way different. You wonder how drunk you really were. You ask how ' + partnerChoiceSubjPron + '\'s feeling, but ' + partnerChoicePossPron + ' answer isn’t in English. It doesn’t even really seem human. You don’t know what’s happening, but you’re scared, really scared. How do you handle it?');
+    question.addClass('col-xs-11').text('You open the door to your hotel room just to check, and there ' + partnerChoiceSubjPron + ' is, facing away from you, a little hunched, breathing heavily. You place a concerned hand on ' + partnerChoicePossPron + ' shoulder, and ' + partnerChoiceSubjPron + ' turns around. ' + partnerChoiceSubjPronCap + ' looks way different. You wonder how drunk you really were. You ask how ' + partnerChoiceSubjPron + '\'s feeling, but ' + partnerChoicePossPron + ' answer isn’t in English. It doesn’t even really seem human. You don’t know what’s happening, but you’re scared, really scared. How do you handle it?');
     songArray = [];
     typeOfSong = "creepy music";
     listenAjax();

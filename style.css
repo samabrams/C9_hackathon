@@ -21,7 +21,7 @@ header {
     margin: 0;
 }
 body {
-    background-image: url('lasunset.jpg');
+    background-image: url('images/lasunset.jpg');
     background-size: cover;
 }
 * {
