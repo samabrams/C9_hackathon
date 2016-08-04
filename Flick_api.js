@@ -1,9 +1,18 @@
+/** Random Pictures using Flick API. */
+
+/** GLOBAL VARIABLES*/
 var flickrKey = '4291af049e7b51ff411bc39565109ce6';
 var flickrSecret = '08d3df2f4f1d7f62';
 var requiredKeys = ['farm', 'server', 'id', 'secret'];
 var avatarArea = null;
 var photoArray = [];
-
+/* function validateAvatarUrl
+ * @purpose
+ * @params:
+ *	- photoObject:
+ * @returns:
+ *       -
+ */
 function validateAvatarUrl(photoObject) {
     var valid = true;
     var r_keys = requiredKeys.length;
@@ -15,6 +24,13 @@ function validateAvatarUrl(photoObject) {
     }
     return true;
 }
+/* function avatarUrlCraete
+ * @purpose
+ * @params:
+ *	- photoObject:
+ * @returns:
+ *       -
+ */
 function avatarUrlCreate(photoObject) {
     if (validateAvatarUrl(photoObject)) {
         return 'https://farm' + photoObject.farm + '.staticflickr.com/' + photoObject.server + '/' + photoObject.id + '_' + photoObject.secret + '_s.jpg';
@@ -22,6 +38,13 @@ function avatarUrlCreate(photoObject) {
         return false;
     }
 }
+/* function loadAvatarData
+ * @purpose
+ * @params:
+ *	- person:
+ * @returns:
+ *       -
+ */
 function loadAvatarData(person) {
     $.ajax({
         url: 'https://api.flickr.com/services/rest?method=flickr.photos.search&api_key=' + flickrKey + '&format=json&nojsoncallback=1&text=' + person,
@@ -76,5 +99,5 @@ function loadFlickrImage(searchQuery) {
 }
 
 $(document).ready(function () {
-    loadAvatarData('los angeles trendy');
+        loadAvatarData('los angeles trendy');  //will target all pictures related to Los Angeles
 });
