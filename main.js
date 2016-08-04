@@ -76,7 +76,7 @@ function processResults(results, status) {
             if ($(this).is('.optionDiv:last-child')) {
                 //handle second option clicked
                 if (option2 == 'Museum') {
-                    morningActivityChoice = option1;
+                    morningActivityChoice = option2;
                 }
                 if (option2 == 'Long Island Iced Tea'){
                     beverageChoiceResult = 'drunk';
@@ -227,7 +227,7 @@ function buildTemplate(avatar, userName) {
     $(option2OuterLabelDiv).click(function () {
         //handle second option clicked
         if (option2 == 'Museum') {
-            morningActivityChoice = option1;
+            morningActivityChoice = option2;
         }
         if (option2 == 'Long Island Iced Tea'){
             beverageChoiceResult = 'drunk';
