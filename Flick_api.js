@@ -36,7 +36,7 @@ function loadAvatarData(person) {
             var chosenNums = [];
             for (var i = 1; i <= 5; i++) {
                 var randomNumber = Math.floor(Math.random() * photoArray.length);
-                while (chosenNums.indexOf(randomNumber) != -1){
+                while (chosenNums.indexOf(randomNumber) != -1) {
                     console.log('preventing duplicate');
                     randomNumber = Math.floor(Math.random() * photoArray.length);
                 }
@@ -50,11 +50,31 @@ function loadAvatarData(person) {
                 var imgQueryString = '#avatarImg' + i;
                 $(imgQueryString).attr('src', url);
             }
-       }
-     })
+        }
+    })
+}
+function loadFlickrImage(searchQuery) {
+    $.ajax({
+        url: 'https://api.flickr.com/services/rest?method=flickr.photos.search&api_key=' + flickrKey + '&format=json&nojsoncallback=1&text=' + searchQuery,
+        dataType: 'json',
+        cache: false,
+        crossDomain: true,
+        success: function (response) {
+            console.log('test', response);
+            photoArray = response.photos.photo;
+            var randomNumber = Math.floor(Math.random() * photoArray.length);
+            var url = avatarUrlCreate(photoArray[randomNumber]);
+            console.log('url: ', url);
+            if (!url) {
+                console.log('invalid url');
+                return;
+            }
+            flickrImage = $('<img>').attr('src', url).css("margin-top", "10%");
+            placeDiv.append(flickrImage);
+        }
+    })
 }
 
-
 $(document).ready(function () {
-        loadAvatarData('los angeles trendy');
+    loadAvatarData('los angeles trendy');
 });
