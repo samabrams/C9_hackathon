@@ -10,6 +10,7 @@ var nightDrinksResult;
 var mainTextDivBottom;
 var option1OuterLabelDiv, option2OuterLabelDiv, option1InnerLabelDiv, option2InnerLabelDiv;
 var question, option1, option2, option1ChosenText, option2ChosenText;
+var partnerChoiceSubjPron, partnerChoiceSubjPronCap, partnerChoiceObjPron, partnerChoicePossPron;
 var googleMap;                              //variable used to create Google Maps object
 var googleService;                          //variable used to create new Google Service object
 var losAngeles = {lat: 34.0522, lng: -118.2437};  //sets the lattitude and longtitude for Los Angeles
@@ -89,6 +90,7 @@ function processResults(results, status) {
                 }
                 if (option2 == 'This girl'){
                     partnerChoiceSubjPron = 'she';
+                    partnerChoiceSubjPronCap = 'She';
                     partnerChoiceObjPron = 'her';
                     partnerChoicePossPron = 'her';
                 }
@@ -108,6 +110,7 @@ function processResults(results, status) {
                 }
                 if (option1 == 'This guy'){
                     partnerChoiceSubjPron = 'he';
+                    partnerChoiceSubjPronCap = 'He';
                     partnerChoiceObjPron = 'him';
                     partnerChoicePossPron = 'his';
                 }
@@ -217,6 +220,7 @@ function buildTemplate(avatar, userName) {
         }
         if (option1 == 'This guy'){
             partnerChoiceSubjPron = 'he';
+            partnerChoiceSubjPronCap = 'He';
             partnerChoiceObjPron = 'him';
             partnerChoicePossPron = 'his';
         }
@@ -236,6 +240,7 @@ function buildTemplate(avatar, userName) {
         }
         if (option2 == 'This girl'){
             partnerChoiceSubjPron = 'she';
+            partnerChoiceSubjPronCap = 'She';
             partnerChoiceObjPron = 'her';
             partnerChoicePossPron = 'her';
         }
@@ -367,7 +372,7 @@ function afterDinnerDrinks() {
     option1 = 'Beer';
     option2 = 'Cocktails';
     option1ChosenText = 'You drink five or six or eight or ten beers over the course of a couple of hours, and you decide the other three dudes in the bar are your best friends.';
-    option2ChosenText = 'There are only a few people at the bar, but you strike up a conversation with one of them, and it goes… okay. But as you both get drunker, it seems more and like you’re fighting. Doesn’t seem like you’ll be taking this one back to the hotel.';
+    option2ChosenText = 'There are only a few people at the bar, but you strike up a conversation with one of them, and it goes… okay. But as you both get drunker, it seems more and more like you’re fighting. Doesn’t seem like you’ll be taking this one back to the hotel.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
     googleTextSearch('beer bar');
@@ -412,7 +417,7 @@ function choosePartner() {
 }
 /** 10th game situation - help. */
 function waterOrMedicine() {
-    question.text('You’re back at the hotel. Things start to pick up, but your partner needs to take a break. '+partnerChoiceSubjPron+' lies down on your couch. '+partnerChoiceSubjPron+' really doesn’t seem to be feeling well. How do you help?');
+    question.text('You’re back at the hotel. Things start to pick up, but your partner needs to take a break. '+partnerChoiceSubjPronCap+' lies down on your couch. '+partnerChoiceSubjPronCap+' really doesn’t seem to be feeling well. How do you help?');
     option1 = 'Get water from the kitchen';
     option2 = 'Get medicine from the bathroom';
     option1ChosenText = 'You come back to the living room. Your couch is empty. Lame. They could’ve just told you if they weren’t into it.';
@@ -425,14 +430,14 @@ function waterOrMedicine() {
 }
 /** 11th game situation - zombi. */
 function respondToZombie() {
-    question.addClass('col-xs-10').text('You open the door to your hotel room just to check, and there ' + partnerChoiceSubjPron + ' is, facing away from you, a little hunched, breathing heavily. You place a concerned hand on ' + partnerChoicePossPron + ' shoulder, and ' + partnerChoiceSubjPron + ' turns around. ' + partnerChoiceSubjPron + ' looks way different. You wonder how drunk you really were. You ask how ' + partnerChoiceSubjPron + '\'s feeling, but ' + partnerChoicePossPron + ' answer isn’t in English. It doesn’t even really seem human. You don’t know what’s happening, but you’re scared, really scared. How do you handle it?');
+    question.addClass('col-xs-10').text('You open the door to your hotel room just to check, and there ' + partnerChoiceSubjPron + ' is, facing away from you, a little hunched, breathing heavily. You place a concerned hand on ' + partnerChoicePossPron + ' shoulder, and ' + partnerChoiceSubjPron + ' turns around. ' + partnerChoiceSubjPronCap + ' looks way different. You wonder how drunk you really were. You ask how ' + partnerChoiceSubjPron + '\'s feeling, but ' + partnerChoicePossPron + ' answer isn’t in English. It doesn’t even really seem human. You don’t know what’s happening, but you’re scared, really scared. How do you handle it?');
     option1 = 'Try to run';
     option2 = 'Shit yourself';
     option1ChosenText = 'You try to run, but where do you run? ' + partnerChoiceSubjPron + '\'s in the doorway, and you’re on the 5th floor. You try to rush past ' + partnerChoiceObjPron + ', and you make a nice move, but as you pull away, you feel the tail of your shirt pull against you. You turn your head, and ' + partnerChoiceSubjPron + ' pulls you toward ' + partnerChoiceObjPron + '. You didn’t realize ' + partnerChoiceSubjPron + ' was so strong.';
     option2ChosenText = 'You freeze. You want to run or do something, anything, but you feel yourself lose control of your bowels. Before you can close the door, ' + partnerChoiceSubjPron + ' reaches out and clasps a surprisingly strong hand around your throat.';
     $(option1InnerLabelDiv).text(option1);
     $(option2InnerLabelDiv).text(option2);
-    loadFlickrImage('run', 1);
+    loadFlickrImage('man running', 1);
     loadFlickrImage('poop', 2);
     nextFunction = zombieBreakfastTime;
 }
