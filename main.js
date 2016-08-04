@@ -23,7 +23,7 @@ var placeImage;
 var placeDiv;
 var flickrImage;
 var songArray = [];
-var typeOfSong = "aint too proud";
+var typeOfSong = "justice dance";
 var userAvatar;       //store the avatar object that been clicked
 
 /** Initialize Google Map and sets the location to the city of Los Angeles. */
@@ -170,6 +170,7 @@ function listenAjax() {
                 songArray.push(song);
                 console.log(songArray[0]);
             }
+            $('#audio').attr('src, ""');
             $('#audio').attr('src', songArray[0].audio);
             playPause();
         }
@@ -385,6 +386,9 @@ function afterDinnerDrinks() {
 }
 /** 8th game situation - night club. */
 function nightClub() {
+    songArray = [];
+    typeOfSong = "verdis quo";
+    listenAjax();
     clearOptionDivs();
     question.text(nightDrinksResult + '. Which club feels like your style?');
     option1 = 'Dance Club';
@@ -431,6 +435,9 @@ function waterOrMedicine() {
 /** 11th game situation - zombi. */
 function respondToZombie() {
     question.addClass('col-xs-10').text('You open the door to your hotel room just to check, and there ' + partnerChoiceSubjPron + ' is, facing away from you, a little hunched, breathing heavily. You place a concerned hand on ' + partnerChoicePossPron + ' shoulder, and ' + partnerChoiceSubjPron + ' turns around. ' + partnerChoiceSubjPronCap + ' looks way different. You wonder how drunk you really were. You ask how ' + partnerChoiceSubjPron + '\'s feeling, but ' + partnerChoicePossPron + ' answer isn’t in English. It doesn’t even really seem human. You don’t know what’s happening, but you’re scared, really scared. How do you handle it?');
+    songArray = [];
+    typeOfSong = "creepy music";
+    listenAjax();
     option1 = 'Try to run';
     option2 = 'Shit yourself';
     option1ChosenText = 'You try to run, but where do you run? ' + partnerChoiceSubjPron + '\'s in the doorway, and you’re on the 5th floor. You try to rush past ' + partnerChoiceObjPron + ', and you make a nice move, but as you pull away, you feel the tail of your shirt pull against you. You turn your head, and ' + partnerChoiceSubjPron + ' pulls you toward ' + partnerChoiceObjPron + '. You didn’t realize ' + partnerChoiceSubjPron + ' was so strong.';
